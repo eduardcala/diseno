@@ -10,8 +10,16 @@ class BotonesPage extends StatelessWidget {
       body: Stack(
         children: [
           _fondoApp(),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                _titulos()
+              ],
+            ),
+          )
         ],
-      )
+      ),
+      bottomNavigationBar: _bottomNavigationBar(context)
     );
   }
 
@@ -53,7 +61,7 @@ class BotonesPage extends StatelessWidget {
       children: [
         gradiente,
         Positioned(
-          top: -100.0,
+          top: -80.0,
           child: cajaRosa
         )
       ],
@@ -62,5 +70,67 @@ class BotonesPage extends StatelessWidget {
 
   }
 
+  Widget _titulos(){
+
+
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Classify transaction',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            SizedBox( height: 10.0 ),
+            Text(
+              'Classify this transaction into a particular category',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+
+
+  }
+
+  Widget _bottomNavigationBar(BuildContext context) {
+
+    return Theme(
+      data: Theme.of(context).copyWith(
+        canvasColor: Color.fromRGBO(55, 57, 84, 1.0),
+        primaryColor: Colors.pinkAccent,
+        textTheme: Theme.of(context).textTheme
+        .copyWith( caption: TextStyle( color: Color.fromRGBO(116, 117, 152, 1.0) ) )
+      ),
+      child: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_today, size: 30.0,),
+            title: Container()
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bubble_chart, size: 30.0,),
+            title: Container()
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.supervised_user_circle, size: 30.0,),
+            title: Container()
+          )
+        ],
+      )
+    );
+
+  }
 
 }
